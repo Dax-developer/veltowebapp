@@ -531,8 +531,7 @@ const Checkout = () => {
                     name="country"
                     value={formData.country}
                     onChange={handleChange}
-                    required
-                  >
+                    required                 >
                     <option value="India">India</option>
                     <option value="USA">United States</option>
                     <option value="CAN">Canada</option>
