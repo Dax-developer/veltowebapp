@@ -533,6 +533,7 @@ const Checkout = () => {
                     onChange={handleChange}
                     required
                   >
+                    <option value="India">India</option>
                     <option value="USA">United States</option>
                     <option value="CAN">Canada</option>
                     <option value="UK">United Kingdom</option>
