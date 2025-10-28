@@ -15,6 +15,7 @@ import Profile from './pages/Profile';
 import OrderSummary from './pages/OrderSummary';
 import ThankYou from './pages/ThankYou';
 import Contact from './pages/Contact';
+import ForgotPassword from './pages/ForgotPassword';
 import './styles/global.css';
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
               <Route path="/order-summary" element={<OrderSummary />} />
               <Route path="/thank-you" element={<ThankYou />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
             </Routes>
           </main>
           <Footer />
