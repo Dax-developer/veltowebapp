@@ -71,6 +71,10 @@ const translations = {
     newsletterDesc: 'Subscribe to our newsletter for the latest updates and offers.',
     yourEmail: 'Your Email Address',
     subscribe: 'Subscribe',
+    pleaseEnterEmail: 'Please enter your email address',
+    pleaseEnterValidEmail: 'Please enter a valid email address',
+    emailAlreadySubscribed: 'This email is already subscribed',
+    subscriptionSuccess: 'Thank you for subscribing!',
     allRightsReserved: 'All Rights Reserved',
     
     // Login

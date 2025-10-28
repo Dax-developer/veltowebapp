@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useLanguage } from '../utils/LanguageContext';
@@ -148,6 +148,52 @@ const FooterBottom = styled.div`
 
 const Footer = () => {
   const { t } = useLanguage();
+  const [email, setEmail] = useState('');
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [error, setError] = useState('');
+  
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
+  
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    
+    if (!email) {
+      setError(t('pleaseEnterEmail'));
+      return;
+    }
+    
+    if (!validateEmail(email)) {
+      setError(t('pleaseEnterValidEmail'));
+      return;
+    }
+    
+    // In a real application, you would send this to your backend
+    // For now, we'll just store it in localStorage and show success
+    const subscribers = JSON.parse(localStorage.getItem('newsletterSubscribers') || '[]');
+    
+    // Check if email is already subscribed
+    if (subscribers.includes(email)) {
+      setError(t('emailAlreadySubscribed'));
+      return;
+    }
+    
+    // Add new subscriber
+    subscribers.push(email);
+    localStorage.setItem('newsletterSubscribers', JSON.stringify(subscribers));
+    
+    // Show success message
+    setIsSubscribed(true);
+    setError('');
+    
+    // Reset form after 3 seconds
+    setTimeout(() => {
+      setEmail('');
+      setIsSubscribed(false);
+    }, 3000);
+  };
   
   return (
     <FooterContainer>
@@ -191,8 +237,29 @@ const Footer = () => {
             <h3>{t('newsletter')}</h3>
             <p>{t('newsletterDesc')}</p>
             <Newsletter>
-              <input type="email" placeholder={t('yourEmail')} />
-              <button>{t('subscribe')}</button>
+              {isSubscribed ? (
+                <div style={{ color: '#4ade80', fontWeight: '600', textAlign: 'center', padding: '12px' }}>
+                  {t('subscriptionSuccess')}
+                </div>
+              ) : (
+                <form onSubmit={handleSubscribe}>
+                  <input 
+                    type="email" 
+                    placeholder={t('yourEmail')} 
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      setError('');
+                    }}
+                  />
+                  {error && (
+                    <div style={{ color: '#ef4444', fontSize: '13px', margin: '5px 0' }}>
+                      {error}
+                    </div>
+                  )}
+                  <button type="submit">{t('subscribe')}</button>
+                </form>
+              )}
             </Newsletter>
           </FooterColumn>
         </FooterContent>
