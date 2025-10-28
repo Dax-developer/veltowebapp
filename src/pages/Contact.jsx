@@ -115,6 +115,10 @@ const Input = styled.input`
     outline: none;
     border-color: #007bff;
   }
+  
+  &.error {
+    border-color: #dc3545;
+  }
 `;
 
 const TextArea = styled.textarea`
@@ -129,6 +133,10 @@ const TextArea = styled.textarea`
   &:focus {
     outline: none;
     border-color: #007bff;
+  }
+  
+  &.error {
+    border-color: #dc3545;
   }
 `;
 
@@ -147,6 +155,29 @@ const SubmitButton = styled.button`
   &:hover {
     background-color: #0056b3;
   }
+  
+  &:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+  }
+`;
+
+const ErrorMessage = styled.span`
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: 5px;
+  display: block;
+`;
+
+const SuccessMessage = styled.div`
+  padding: 15px;
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 500;
 `;
 
 const MapContainer = styled.div`
@@ -170,17 +201,93 @@ const Contact = () => {
     message: ''
   });
   
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = 'First name is required';
+    }
+    
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = 'Last name is required';
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+    
+    if (!formData.subject.trim()) {
+      newErrors.subject = 'Subject is required';
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required';
+    } else if (formData.message.length < 10) {
+      newErrors.message = 'Message should be at least 10 characters';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     });
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors({
+        ...errors,
+        [name]: ''
+      });
+    }
   };
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle contact form submission logic here
-    console.log('Contact form submitted:', formData);
+    
+    if (validateForm()) {
+      setIsSubmitting(true);
+      
+      // Simulate API call delay
+      setTimeout(() => {
+        // Store message in localStorage
+        const messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+        const newMessage = {
+          id: Date.now(),
+          ...formData,
+          timestamp: new Date().toISOString()
+        };
+        messages.push(newMessage);
+        localStorage.setItem('contactMessages', JSON.stringify(messages));
+        
+        // Reset form and show success message
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+        
+        setSubmitSuccess(true);
+        setIsSubmitting(false);
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          setSubmitSuccess(false);
+        }, 5000);
+      }, 1000);
+    }
   };
   
   return (
@@ -251,6 +358,12 @@ const Contact = () => {
           </ContactInfo>
           
           <ContactForm>
+            {submitSuccess && (
+              <SuccessMessage>
+                Thank you for your message! We'll get back to you soon.
+              </SuccessMessage>
+            )}
+            
             <form onSubmit={handleSubmit}>
               <FormRow>
                 <FormGroup>
@@ -262,7 +375,9 @@ const Contact = () => {
                     value={formData.firstName}
                     onChange={handleChange}
                     required
+                    className={errors.firstName ? 'error' : ''}
                   />
+                  {errors.firstName && <ErrorMessage>{errors.firstName}</ErrorMessage>}
                 </FormGroup>
                 
                 <FormGroup>
@@ -274,7 +389,9 @@ const Contact = () => {
                     value={formData.lastName}
                     onChange={handleChange}
                     required
+                    className={errors.lastName ? 'error' : ''}
                   />
+                  {errors.lastName && <ErrorMessage>{errors.lastName}</ErrorMessage>}
                 </FormGroup>
               </FormRow>
               
@@ -287,7 +404,9 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  className={errors.email ? 'error' : ''}
                 />
+                {errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
               </FormGroup>
               
               <FormGroup>
@@ -299,7 +418,9 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   required
+                  className={errors.subject ? 'error' : ''}
                 />
+                {errors.subject && <ErrorMessage>{errors.subject}</ErrorMessage>}
               </FormGroup>
               
               <FormGroup>
@@ -310,10 +431,14 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
+                  className={errors.message ? 'error' : ''}
                 ></TextArea>
+                {errors.message && <ErrorMessage>{errors.message}</ErrorMessage>}
               </FormGroup>
               
-              <SubmitButton type="submit">Send Message</SubmitButton>
+              <SubmitButton type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+              </SubmitButton>
             </form>
           </ContactForm>
         </ContactContainer>
