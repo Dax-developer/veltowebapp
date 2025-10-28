@@ -193,10 +193,13 @@ const ProductListing = () => {
             
             <FilterSelect value={filterPrice} onChange={(e) => setFilterPrice(e.target.value)}>
               <option value="all">All Prices</option>
-              <option value="0-8300">Under ₹8,300</option>
-              <option value="8300-41500">₹8,300 - ₹41,500</option>
-              <option value="41500-83000">₹41,500 - ₹83,000</option>
-              <option value="83000+">Over ₹83,000</option>
+              <option value="0-100">Under ₹100</option>
+              <option value="100-500">₹100 - ₹500</option>
+              <option value="500-1000">₹500 - ₹1,000</option>
+              <option value="1000-5000">₹1,000 - ₹5,000</option>
+              <option value="5000-10000">₹5,000 - ₹10,000</option>
+              <option value="10000-50000">₹10,000 - ₹50,000</option>
+              <option value="50000+">Over ₹50,000</option>
             </FilterSelect>
           </FilterGroup>
           
