@@ -146,11 +146,16 @@ const ProductListing = () => {
     
     // Apply price filter
     if (filterPrice !== 'all') {
-      const [min, max] = filterPrice.split('-').map(Number);
-      if (max) {
-        result = result.filter(p => p.price >= min && p.price <= max);
+      if (filterPrice === '50000+') {
+        // Handle "Over ₹50,000" case
+        result = result.filter(p => p.price > 50000);
       } else {
-        result = result.filter(p => p.price >= min);
+        const [min, max] = filterPrice.split('-').map(Number);
+        if (max) {
+          result = result.filter(p => p.price >= min && p.price <= max);
+        } else {
+          result = result.filter(p => p.price >= min);
+        }
       }
       // Re-apply the 5 product limit after filtering
       if (category === 'gifts' || category === 'toys') {
