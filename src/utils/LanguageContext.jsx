@@ -35,6 +35,10 @@ const translations = {
     fashion: 'Fashion',
     homeKitchen: 'Home & Kitchen',
     beauty: 'Beauty',
+    books: 'Books',
+    toys: 'Toys & Games',
+    gifts: 'Gifts',
+    automotive: 'Automotive',
     
     // Products
     featuredProducts: 'Featured Products',

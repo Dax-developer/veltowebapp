@@ -5,10 +5,7 @@ export const categories = {
   fashion: 'Fashion',
   home: 'Home & Kitchen',
   beauty: 'Beauty & Personal Care',
-  sports: 'Sports & Outdoors',
-  books: 'Books',
-  toys: 'Toys & Games',
-  automotive: 'Automotive'
+  sports: 'Sports & Outdoors'
 };
 
 export const products = [

@@ -335,18 +335,13 @@ const Cart = () => {
             </SummaryRow>
             
             <SummaryRow>
-              <SummaryLabel>Shipping</SummaryLabel>
-              <SummaryValue>${shipping === 0 ? 'FREE' : shipping.toFixed(2)}</SummaryValue>
-            </SummaryRow>
-            
-            <SummaryRow>
-              <SummaryLabel>Tax</SummaryLabel>
-              <SummaryValue>${tax.toFixed(2)}</SummaryValue>
+              <SummaryLabel>Tax (18%)</SummaryLabel>
+              <SummaryValue>{formatCurrency(tax)}</SummaryValue>
             </SummaryRow>
             
             <TotalRow>
               <SummaryLabel>Total</SummaryLabel>
-              <SummaryValue>${total.toFixed(2)}</SummaryValue>
+              <SummaryValue>{formatCurrency(total)}</SummaryValue>
             </TotalRow>
             
             <CheckoutButton to="/checkout">Proceed to Checkout</CheckoutButton>

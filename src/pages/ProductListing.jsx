@@ -127,11 +127,20 @@ const ProductListing = () => {
   useEffect(() => {
     let result = category ? getProductsByCategory(category) : products;
     
+    // Limit to 5 products for gifts and toys categories
+    if (category === 'gifts' || category === 'toys') {
+      result = result.slice(0, 5);
+    }
+    
     // Apply search
     if (searchQuery) {
       result = searchProducts(searchQuery);
       if (category) {
         result = result.filter(p => p.category === category);
+      }
+      // Re-apply the 5 product limit after search
+      if (category === 'gifts' || category === 'toys') {
+        result = result.slice(0, 5);
       }
     }
     
@@ -143,10 +152,19 @@ const ProductListing = () => {
       } else {
         result = result.filter(p => p.price >= min);
       }
+      // Re-apply the 5 product limit after filtering
+      if (category === 'gifts' || category === 'toys') {
+        result = result.slice(0, 5);
+      }
     }
     
     // Apply sorting
     result = sortProducts(result, sortBy);
+    
+    // Final application of the 5 product limit
+    if (category === 'gifts' || category === 'toys') {
+      result = result.slice(0, 5);
+    }
     
     setFilteredProducts(result);
   }, [category, sortBy, filterPrice, searchQuery]);
@@ -156,7 +174,11 @@ const ProductListing = () => {
       <div className="container">
         <PageTitle>
           {category ? category.charAt(0).toUpperCase() + category.slice(1) : 'All Products'}
-          <ProductCount>{filteredProducts.length} products</ProductCount>
+          <ProductCount>
+            {category === 'gifts' || category === 'toys' 
+              ? Math.min(filteredProducts.length, 5) + ' products (limited display)'
+              : filteredProducts.length + ' products'}
+          </ProductCount>
         </PageTitle>
         
         <FiltersSection>
@@ -199,12 +221,14 @@ const ProductListing = () => {
           )}
         </ProductsGrid>
         
-        <Pagination>
-          <PageButton className="active">1</PageButton>
-          <PageButton>2</PageButton>
-          <PageButton>3</PageButton>
-          <PageButton>Next</PageButton>
-        </Pagination>
+        {(category !== 'gifts' && category !== 'toys') && (
+          <Pagination>
+            <PageButton className="active">1</PageButton>
+            <PageButton>2</PageButton>
+            <PageButton>3</PageButton>
+            <PageButton>Next</PageButton>
+          </Pagination>
+        )}
       </div>
     </PageContainer>
   );
