@@ -28,12 +28,17 @@ const FooterContent = styled.div`
   gap: 30px;
   margin-bottom: 30px;
   
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     grid-template-columns: repeat(2, 1fr);
   }
   
-  @media (max-width: 480px) {
+  @media (max-width: 768px) {
+    gap: 25px;
+  }
+  
+  @media (max-width: 576px) {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 `;
 
@@ -75,6 +80,7 @@ const SocialLinks = styled.div`
   display: flex;
   gap: 12px;
   margin-top: 20px;
+  flex-wrap: wrap;
   
   a {
     display: flex;
@@ -94,6 +100,15 @@ const SocialLinks = styled.div`
       transform: translateY(-4px) scale(1.1);
       box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
       border-color: transparent;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    justify-content: center;
+    
+    a {
+      width: 40px;
+      height: 40px;
     }
   }
 `;
@@ -135,6 +150,16 @@ const Newsletter = styled.div`
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
     }
+    
+    @media (max-width: 576px) {
+      padding: 14px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    input {
+      padding: 14px;
+    }
   }
 `;
 
@@ -144,6 +169,11 @@ const FooterBottom = styled.div`
   border-top: 1px solid #444;
   color: #ccc;
   font-size: 14px;
+  
+  @media (max-width: 576px) {
+    font-size: 13px;
+    padding-top: 15px;
+  }
 `;
 
 const Footer = () => {
@@ -205,10 +235,21 @@ const Footer = () => {
               {t('brandDesc')}
             </p>
             <SocialLinks>
-              <a href="#"><i className="fab fa-facebook-f"></i></a>
-              <a href="#"><i className="fab fa-twitter"></i></a>
-              <a href="#"><i className="fab fa-instagram"></i></a>
-              <a href="#"><i className="fab fa-linkedin-in"></i></a>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                <i className="fab fa-facebook-f"></i>
+              </a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                <i className="fab fa-twitter"></i>
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                <i className="fab fa-instagram"></i>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                <i className="fab fa-linkedin-in"></i>
+              </a>
+              <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">
+                <i className="fab fa-whatsapp"></i>
+              </a>
             </SocialLinks>
           </FooterColumn>
           
