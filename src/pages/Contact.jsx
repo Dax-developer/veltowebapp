@@ -192,6 +192,34 @@ const MapContainer = styled.div`
   color: #666;
 `;
 
+const SocialLinks = styled.div`
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+  
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f8f9fa;
+    color: #007bff;
+    transition: all 0.3s ease;
+    border: 1px solid #dee2e6;
+    
+    &:hover {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+      border-color: transparent;
+    }
+  }
+`;
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -293,13 +321,13 @@ const Contact = () => {
   return (
     <PageContainer>
       <div className="container">
-        <PageTitle>Contact Us</PageTitle>
+        <PageTitle>Contact Velto India</PageTitle>
         
         <ContactContainer>
           <ContactInfo>
             <InfoSection>
               <SectionTitle>Get In Touch</SectionTitle>
-              <p>We'd love to hear from you! Send us a message and we'll respond as soon as possible.</p>
+              <p>We'd love to hear from you! Send us a message and our team in Gurgaon will respond as soon as possible.</p>
             </InfoSection>
             
             <InfoSection>
@@ -311,8 +339,10 @@ const Contact = () => {
                 </InfoIcon>
                 <InfoContent>
                   <h3>Our Location</h3>
-                  <p>123 Commerce Street</p>
-                  <p>New York, NY 10001</p>
+                  <p>Velto E-commerce Private Limited</p>
+                  <p>123 Business Avenue, Sector 42</p>
+                  <p>Gurgaon, Haryana 122002</p>
+                  <p>India</p>
                 </InfoContent>
               </InfoItem>
               
@@ -322,8 +352,9 @@ const Contact = () => {
                 </InfoIcon>
                 <InfoContent>
                   <h3>Phone Number</h3>
-                  <p>+1 (555) 123-4567</p>
-                  <p>Mon-Fri 9:00 AM - 5:00 PM</p>
+                  <p>+91 98765 43210</p>
+                  <p>+91 124 4567 890</p>
+                  <p>Mon-Sat 9:00 AM - 8:00 PM</p>
                 </InfoContent>
               </InfoItem>
               
@@ -333,27 +364,37 @@ const Contact = () => {
                 </InfoIcon>
                 <InfoContent>
                   <h3>Email Address</h3>
-                  <p>support@shopease.com</p>
-                  <p>info@shopease.com</p>
+                  <p>support@veltowebapp.com</p>
+                  <p>info@veltowebapp.com</p>
+                  <p>careers@veltowebapp.com</p>
                 </InfoContent>
               </InfoItem>
             </InfoSection>
             
             <InfoSection>
               <SectionTitle>Follow Us</SectionTitle>
-              <InfoItem>
-                <InfoIcon>
+              <p>Follow us on social media for updates, promotions and latest offers from Velto India</p>
+              <SocialLinks>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
                   <i className="fab fa-facebook-f"></i>
-                </InfoIcon>
-                <InfoContent>
-                  <h3>Social Media</h3>
-                  <p>Follow us on social media for updates and promotions</p>
-                </InfoContent>
-              </InfoItem>
+                </a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                  <i className="fab fa-twitter"></i>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                  <i className="fab fa-instagram"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                  <i className="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">
+                  <i className="fab fa-whatsapp"></i>
+                </a>
+              </SocialLinks>
             </InfoSection>
             
             <MapContainer>
-              <p>Map placeholder - Your location would appear here</p>
+              <p>Velto E-commerce Private Limited<br />123 Business Avenue, Sector 42<br />Gurgaon, Haryana 122002<br />India</p>
             </MapContainer>
           </ContactInfo>
           
