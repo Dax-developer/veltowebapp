@@ -1597,6 +1597,36 @@ export const products = [
     description: 'Professional hair straightener with ultra-zone technology.',
     colors: ['Black'],
     sizes: ['1 inch']
+  },
+
+  // HIGH-END ELECTRONICS - 2 Products
+  {
+    id: 151,
+    name: 'Apple MacBook Pro 16-inch M3 Max',
+    category: 'electronics',
+    price: 99999,
+    originalPrice: 129999,
+    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&q=80',
+    rating: 4.9,
+    discount: 23,
+    inStock: true,
+    description: 'Ultimate performance laptop with M3 Max chip, 36GB RAM, and 1TB SSD.',
+    colors: ['Space Black', 'Silver'],
+    sizes: ['1TB SSD', '2TB SSD', '4TB SSD']
+  },
+  {
+    id: 152,
+    name: 'Sony A7R V Full-Frame Mirrorless Camera',
+    category: 'electronics',
+    price: 75999,
+    originalPrice: 89999,
+    image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&q=80',
+    rating: 4.8,
+    discount: 16,
+    inStock: true,
+    description: '61MP full-frame sensor with 5-axis stabilization and advanced autofocus.',
+    colors: ['Black'],
+    sizes: ['Body Only', 'With 24-70mm Lens']
   }
 ];
 
