@@ -457,60 +457,7 @@ p {
   }
 }
 
-/* Theme Styles */
-body.dark {
-  background: #1a1a1a;
-  color: #e0e0e0;
-}
-
-body.dark .card {
-  background: #2d2d2d;
-  color: #e0e0e0;
-  border-color: #444;
-}
-
-body.dark .card:hover {
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  border-color: #555;
-}
-
-body.dark .btn {
-  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-body.dark .btn:hover {
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-}
-
-body.dark .btn-secondary {
-  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-body.dark .btn-secondary:hover {
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-}
-
-body.dark input,
-body.dark select,
-body.dark textarea {
-  background: #2d2d2d;
-  color: #e0e0e0;
-  border-color: #444;
-}
-
-body.dark input:focus,
-body.dark select:focus,
-body.dark textarea:focus {
-  border-color: #667eea;
-  background: #333;
-}
-
-body.dark ::-webkit-scrollbar-track {
-  background: #2d2d2d;
-}
-
+/* Light theme */
 body.light {
   background: #ffffff;
   color: #333333;
@@ -539,8 +486,63 @@ body.light select:focus,
 body.light textarea:focus {
   border-color: #667eea;
   background: #ffffff;
+  outline: none;
 }
 
 body.light ::-webkit-scrollbar-track {
   background: #f1f1f1;
+}
+
+/* Header light theme */
+body.light header {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+body.light .dropdown {
+  background: #ffffff;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+body.light .dropdown a,
+body.light .dropdown button {
+  color: #333;
+}
+
+body.light .dropdown a:hover,
+body.light .dropdown button:hover {
+  background: #f8f9ff;
+  color: #667eea;
+}
+
+/* Footer light theme */
+body.light footer {
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+  color: white;
+}
+
+/* Default theme (same as original) */
+body.default {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  color: #2d3748;
+}
+
+body.default .card {
+  background: white;
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
+body.default .card:hover {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  border-color: rgba(102, 126, 234, 0.2);
+}
+
+body.default header {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+}
+
+body.default footer {
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+  color: white;
 }

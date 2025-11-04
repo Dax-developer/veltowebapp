@@ -23,6 +23,19 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import './styles/global.css';
 
 function App() {
+  // Apply saved theme on initial load (only default or light)
+  React.useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme && (savedTheme === 'default' || savedTheme === 'light')) {
+      document.body.className = savedTheme;
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    } else {
+      // Default to 'default' theme if invalid or not set
+      document.body.className = 'default';
+      localStorage.setItem('theme', 'default');
+    }
+  }, []);
+  
   return (
     <LanguageProvider>
       <CartProvider>

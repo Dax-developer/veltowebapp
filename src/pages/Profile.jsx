@@ -1731,15 +1731,16 @@ Next steps:
                       Theme:
                       <Select 
                         id="theme"
-                        style={{marginLeft: '10px', padding: '5px'}}
-                        defaultValue="default"
+                        style={{marginLeft: '10px', padding: '8px', borderRadius: '4px', border: '1px solid #ddd'}}
+                        defaultValue={localStorage.getItem('theme') || 'default'}
                         onChange={(e) => {
                           document.body.className = e.target.value;
                           localStorage.setItem('theme', e.target.value);
+                          // Apply theme immediately to all elements
+                          document.documentElement.setAttribute('data-theme', e.target.value);
                         }}
                       >
                         <option value="default">Default</option>
-                        <option value="dark">Dark</option>
                         <option value="light">Light</option>
                       </Select>
                     </Label>
