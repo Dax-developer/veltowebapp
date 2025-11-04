@@ -16,6 +16,10 @@ import OrderSummary from './pages/OrderSummary';
 import ThankYou from './pages/ThankYou';
 import Contact from './pages/Contact';
 import ForgotPassword from './pages/ForgotPassword';
+import FAQ from './pages/FAQ';
+import ShippingPolicy from './pages/ShippingPolicy';
+import ReturnsExchanges from './pages/ReturnsExchanges';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import './styles/global.css';
 
 function App() {
@@ -39,6 +43,10 @@ function App() {
               <Route path="/thank-you" element={<ThankYou />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/faq" element={<FAQ />} />
+              <Route path="/shipping-policy" element={<ShippingPolicy />} />
+              <Route path="/returns-exchanges" element={<ReturnsExchanges />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             </Routes>
           </main>
           <Footer />

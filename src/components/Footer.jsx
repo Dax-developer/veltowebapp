@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useLanguage } from '../utils/LanguageContext';
 
@@ -178,9 +178,30 @@ const FooterBottom = styled.div`
 
 const Footer = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [error, setError] = useState('');
+  
+  // Function to scroll to top of page
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  
+  // Function to handle navigation with scroll to top
+  const handleNavigation = (path) => {
+    navigate(path);
+    // Scroll to top after navigation
+    setTimeout(() => {
+      scrollToTop();
+    }, 100);
+  };
+  
+  // Function to handle hash navigation for FAQ sections
+  const handleHashNavigation = (hash) => {
+    handleNavigation('/faq');
+    // Will implement hash scrolling after FAQ page is created
+  };
   
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -256,21 +277,21 @@ const Footer = () => {
           <FooterColumn>
             <h3>{t('quickLinks')}</h3>
             <ul>
-              <li><Link to="/">{t('home')}</Link></li>
-              <li><Link to="/products">{t('products')}</Link></li>
-              <li><Link to="/contact">{t('contact')}</Link></li>
-              <li><Link to="/profile">{t('myAccount')}</Link></li>
+              <li><Link to="/" onClick={scrollToTop}>{t('home')}</Link></li>
+              <li><Link to="/products" onClick={scrollToTop}>{t('products')}</Link></li>
+              <li><Link to="/contact" onClick={scrollToTop}>{t('contact')}</Link></li>
+              <li><Link to="/profile" onClick={scrollToTop}>{t('myAccount')}</Link></li>
             </ul>
           </FooterColumn>
           
           <FooterColumn>
             <h3>{t('customerService')}</h3>
             <ul>
-              <li><Link to="/contact">{t('contactUs')}</Link></li>
-              <li><Link to="#">{t('faqs')}</Link></li>
-              <li><Link to="#">{t('shippingPolicy')}</Link></li>
-              <li><Link to="#">{t('returnsExchanges')}</Link></li>
-              <li><Link to="#">{t('privacyPolicy')}</Link></li>
+              <li><Link to="/contact" onClick={scrollToTop}>{t('contactUs')}</Link></li>
+              <li><Link to="/faq" onClick={scrollToTop}>{t('faqs')}</Link></li>
+              <li><Link to="/shipping-policy" onClick={scrollToTop}>{t('shippingPolicy')}</Link></li>
+              <li><Link to="/returns-exchanges" onClick={scrollToTop}>{t('returnsExchanges')}</Link></li>
+              <li><Link to="/privacy-policy" onClick={scrollToTop}>{t('privacyPolicy')}</Link></li>
             </ul>
           </FooterColumn>
           
