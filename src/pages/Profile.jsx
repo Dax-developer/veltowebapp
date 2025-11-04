@@ -1710,7 +1710,90 @@ Next steps:
             {activeSection === 'settings' && (
               <>
                 <SectionTitle>Account Settings</SectionTitle>
-                <p>Account settings options would appear here.</p>
+                
+                <FormSection>
+                  <SectionTitle>Notification Preferences</SectionTitle>
+                  <FormGroup>
+                    <Label>
+                      <input 
+                        type="checkbox" 
+                        style={{marginRight: '10px'}}
+                        defaultChecked
+                      />
+                      Email notifications for order updates
+                    </Label>
+                  </FormGroup>
+                  <FormGroup>
+                    <Label>
+                      <input 
+                        type="checkbox" 
+                        style={{marginRight: '10px'}}
+                        defaultChecked
+                      />
+                      SMS notifications for order updates
+                    </Label>
+                  </FormGroup>
+                  <FormGroup>
+                    <Label>
+                      <input 
+                        type="checkbox" 
+                        style={{marginRight: '10px'}}
+                      />
+                      Promotional emails and offers
+                    </Label>
+                  </FormGroup>
+                  <FormGroup>
+                    <Label>
+                      <input 
+                        type="checkbox" 
+                        style={{marginRight: '10px'}}
+                        defaultChecked
+                      />
+                      Product recommendations
+                    </Label>
+                  </FormGroup>
+                </FormSection>
+                
+                <FormSection>
+                  <SectionTitle>Privacy Settings</SectionTitle>
+                  <FormGroup>
+                    <Label>
+                      <input 
+                        type="checkbox" 
+                        style={{marginRight: '10px'}}
+                        defaultChecked
+                      />
+                      Make my profile visible to other users
+                    </Label>
+                  </FormGroup>
+                  <FormGroup>
+                    <Label>
+                      <input 
+                        type="checkbox" 
+                        style={{marginRight: '10px'}}
+                      />
+                      Allow personalized ads based on my browsing
+                    </Label>
+                  </FormGroup>
+                </FormSection>
+                
+                <FormSection>
+                  <SectionTitle>Security</SectionTitle>
+                  <SaveButton onClick={() => alert('Password change functionality would be implemented here.')}>
+                    <i className="fas fa-key"></i> Change Password
+                  </SaveButton>
+                  <br /><br />
+                  <SaveButton 
+                    style={{backgroundColor: '#dc3545'}}
+                    onClick={() => {
+                      if (window.confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+                        alert('Account deletion functionality would be implemented here.');
+                      }
+                    }}
+                  >
+                    <i className="fas fa-trash"></i> Delete Account
+                  </SaveButton>
+                </FormSection>
               </>
             )}
           </MainContent>

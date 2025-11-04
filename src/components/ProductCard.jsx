@@ -181,6 +181,7 @@ const Notification = styled.div`
 const ProductCard = ({ product }) => {
   const { addToCart, addToWishlist, isInWishlist, removeFromWishlist } = useCart();
   const [showNotification, setShowNotification] = useState(false);
+  const [showWishlistNotification, setShowWishlistNotification] = useState(false);
   
   const handleAddToCart = () => {
     addToCart(product);
@@ -193,6 +194,8 @@ const ProductCard = ({ product }) => {
       removeFromWishlist(product.id);
     } else {
       addToWishlist(product);
+      setShowWishlistNotification(true);
+      setTimeout(() => setShowWishlistNotification(false), 2000);
     }
   };
   const renderRating = (rating) => {
@@ -252,6 +255,7 @@ const ProductCard = ({ product }) => {
           <i className={isInWishlist(product.id) ? 'fas fa-heart' : 'far fa-heart'}></i>
         </WishlistButton>
         {showNotification && <Notification>Added to cart!</Notification>}
+        {showWishlistNotification && <Notification>Added to wishlist!</Notification>}
       </ProductInfo>
     </Card>
   );

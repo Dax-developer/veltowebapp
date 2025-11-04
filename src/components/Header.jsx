@@ -218,7 +218,7 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-  const { getCartItemCount } = useCart();
+  const { getCartItemCount, wishlist } = useCart();
   const { t } = useLanguage();
   
   useEffect(() => {
@@ -265,7 +265,7 @@ const Header = () => {
                     <i className="fas fa-shopping-bag"></i>{t('myOrders')}
                   </Link>
                   <Link to="/profile" onClick={() => setUserMenuOpen(false)}>
-                    <i className="fas fa-heart"></i>{t('wishlist')}
+                    <i className="fas fa-cog"></i>{t('settings')}
                   </Link>
                   <button className="logout" onClick={handleLogout}>
                     <i className="fas fa-sign-out-alt"></i>Logout
@@ -277,6 +277,10 @@ const Header = () => {
                 <i className="fas fa-user"></i>
               </IconLink>
             )}
+            <IconLink to="/profile" title="Wishlist">
+              <i className="fas fa-heart"></i>
+              {wishlist.length > 0 && <Badge>{wishlist.length}</Badge>}
+            </IconLink>
             <IconLink to="/cart" title="Shopping Cart">
               <i className="fas fa-shopping-cart"></i>
               {getCartItemCount() > 0 && <Badge>{getCartItemCount()}</Badge>}
