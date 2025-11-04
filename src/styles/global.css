@@ -456,3 +456,91 @@ p {
     border: 1px solid #ddd;
   }
 }
+
+/* Theme Styles */
+body.dark {
+  background: #1a1a1a;
+  color: #e0e0e0;
+}
+
+body.dark .card {
+  background: #2d2d2d;
+  color: #e0e0e0;
+  border-color: #444;
+}
+
+body.dark .card:hover {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border-color: #555;
+}
+
+body.dark .btn {
+  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.dark .btn:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+body.dark .btn-secondary {
+  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.dark .btn-secondary:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+body.dark input,
+body.dark select,
+body.dark textarea {
+  background: #2d2d2d;
+  color: #e0e0e0;
+  border-color: #444;
+}
+
+body.dark input:focus,
+body.dark select:focus,
+body.dark textarea:focus {
+  border-color: #667eea;
+  background: #333;
+}
+
+body.dark ::-webkit-scrollbar-track {
+  background: #2d2d2d;
+}
+
+body.light {
+  background: #ffffff;
+  color: #333333;
+}
+
+body.light .card {
+  background: #ffffff;
+  border-color: #eee;
+}
+
+body.light .card:hover {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  border-color: #ddd;
+}
+
+body.light input,
+body.light select,
+body.light textarea {
+  background: #ffffff;
+  color: #333333;
+  border-color: #ddd;
+}
+
+body.light input:focus,
+body.light select:focus,
+body.light textarea:focus {
+  border-color: #667eea;
+  background: #ffffff;
+}
+
+body.light ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}

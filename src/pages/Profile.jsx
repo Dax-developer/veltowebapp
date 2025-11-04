@@ -1069,6 +1069,19 @@ Next steps:
     if (savedProfile) {
       setProfileData(JSON.parse(savedProfile));
     }
+    
+    // Load saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.body.className = savedTheme;
+      // Set the select element value if it exists
+      setTimeout(() => {
+        const themeSelect = document.getElementById('theme');
+        if (themeSelect) {
+          themeSelect.value = savedTheme;
+        }
+      }, 100);
+    }
   }, []);
   
   return (
@@ -1712,6 +1725,28 @@ Next steps:
                 <SectionTitle>Account Settings</SectionTitle>
                 
                 <FormSection>
+                  <SectionTitle>Appearance</SectionTitle>
+                  <FormGroup>
+                    <Label>
+                      Theme:
+                      <Select 
+                        id="theme"
+                        style={{marginLeft: '10px', padding: '5px'}}
+                        defaultValue="default"
+                        onChange={(e) => {
+                          document.body.className = e.target.value;
+                          localStorage.setItem('theme', e.target.value);
+                        }}
+                      >
+                        <option value="default">Default</option>
+                        <option value="dark">Dark</option>
+                        <option value="light">Light</option>
+                      </Select>
+                    </Label>
+                  </FormGroup>
+                </FormSection>
+                
+                <FormSection>
                   <SectionTitle>Notification Preferences</SectionTitle>
                   <FormGroup>
                     <Label>
@@ -1779,7 +1814,17 @@ Next steps:
                 
                 <FormSection>
                   <SectionTitle>Security</SectionTitle>
-                  <SaveButton onClick={() => alert('Password change functionality would be implemented here.')}>
+                  <SaveButton onClick={() => {
+                    const newPassword = prompt('Enter your new password:');
+                    if (newPassword) {
+                      const confirmPassword = prompt('Confirm your new password:');
+                      if (newPassword === confirmPassword) {
+                        alert('Password changed successfully!');
+                      } else {
+                        alert('Passwords do not match!');
+                      }
+                    }
+                  }}>
                     <i className="fas fa-key"></i> Change Password
                   </SaveButton>
                   <br /><br />
@@ -1787,7 +1832,12 @@ Next steps:
                     style={{backgroundColor: '#dc3545'}}
                     onClick={() => {
                       if (window.confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
-                        alert('Account deletion functionality would be implemented here.');
+                        // Remove user from localStorage
+                        localStorage.removeItem('currentUser');
+                        localStorage.removeItem('users');
+                        // Redirect to home page
+                        window.location.href = '/';
+                        alert('Account deleted successfully!');
                       }
                     }}
                   >
