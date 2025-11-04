@@ -1820,7 +1820,19 @@ Next steps:
                     if (newPassword) {
                       const confirmPassword = prompt('Confirm your new password:');
                       if (newPassword === confirmPassword) {
-                        alert('Password changed successfully!');
+                        // Update password in localStorage
+                        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                        if (currentUser) {
+                          const users = JSON.parse(localStorage.getItem('users') || '[]');
+                          const updatedUsers = users.map(user => {
+                            if (user.email === currentUser.email) {
+                              return { ...user, password: newPassword };
+                            }
+                            return user;
+                          });
+                          localStorage.setItem('users', JSON.stringify(updatedUsers));
+                          alert('Password changed successfully!');
+                        }
                       } else {
                         alert('Passwords do not match!');
                       }
