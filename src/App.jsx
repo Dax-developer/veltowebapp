@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { CartProvider } from './utils/CartContext';
 import { LanguageProvider } from './utils/LanguageContext';
 import Header from './components/Header';
@@ -22,6 +22,17 @@ import ReturnsExchanges from './pages/ReturnsExchanges';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import './styles/global.css';
 
+// Scroll to top component
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
 function App() {
   // Apply saved theme on initial load (only default or light)
   React.useEffect(() => {
@@ -40,6 +51,7 @@ function App() {
     <LanguageProvider>
       <CartProvider>
         <Router>
+          <ScrollToTop />
           <Header />
           <main>
             <Routes>
